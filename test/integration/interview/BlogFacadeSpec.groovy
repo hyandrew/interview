@@ -14,16 +14,18 @@ class BlogFacadeSpec extends Specification {
     BlogFacade blogFacadeService
 
     void "newly published blog should at top of recent blog entries"() {
-        given:
+		given:
         def now = new Date()
         blogFacadeService.publish(new BlogEntryDTO(
                 title: 'title',
                 content: 'content',
                 dateCreated: now
         ))
+		
         def entry = blogFacadeService.getRecentEntries(1)[0]
 
         expect:
+		
         entry.title == 'title'
         entry.content == 'content'
         entry.dateCreated == now
